@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import {useSelector} from 'react-redux';
+import { Repository } from './Repository';
+import { useState } from 'react';
+
 
 function App() {
+  const matches = useSelector(state => state.matches);
+  const [word, setWord] = useState("");
+  
+
+  // dispatch
+  // const dispatch = useDispatch();
+  // dispatch(startSearching({word}));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <input type="search" value = {word} 
+        onChange={event => setWord(event.target.value)}/>
+        <button onClick={matches.filter(elem => elem.full_name.includes({word}))}>Search</button>  
+        <Repository match = {matches[0]}/>
+
+        {}
+
+        
+
+        {/* {match.map((mat, i) => <a href={mat.html_url} key={i}>{mat.full_name}</a>)} */}
+
+
+      </div>
     </div>
   );
 }
